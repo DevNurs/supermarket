@@ -1,17 +1,24 @@
 from apps.products.models import Product, ProductImage
 from apps.products.forms import ProductForm, ProductImageForm
 from django.forms import inlineformset_factory
+from django.views.generic import ListView
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 
-def index(request):
-    product = Product.objects.all()
-    return render(request, 'products/index.html', {'products': product})
+class ProductIndexView(ListView):
+    model = Product
+    template_name = 'products/index.html'
+    context_object_name = 'products'
+
+
+# def index(request):
+#     product = Product.objects.all()
+#     return render(request, 'products/index.html', {'products': product})
 
 
 def detail(request, id):
-    product = Product.objects.get(id=id)
+    product = get_object_or_404(Product, id=id)
     return render(request, 'products/detail.html', {'product': product})
 
 
