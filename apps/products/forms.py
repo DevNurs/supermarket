@@ -5,7 +5,7 @@ from django import forms
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        exclude = ['is_stock', ]
+        exclude = ['is_stock', 'slug']
         widgets = {
             'title': forms.TextInput(attrs={'class': "form-control"}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),

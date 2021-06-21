@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.db.models.signals import pre_save
+from utils.slug_generator import unique_slug_generators
 from apps.categories.models import Category
 
 
@@ -13,6 +14,7 @@ class Product(models.Model):
         verbose_name='Описание',
         blank=True, null=True
     )
+    slug = models.SlugField(blank=True, unique=True)
     price = models.PositiveIntegerField(verbose_name='Цена:')
     quantity = models.PositiveIntegerField(default=0, verbose_name='Количество:')
     is_stock = models.BooleanField(default=False, db_index=True)
@@ -40,3 +42,11 @@ class ProductImage(models.Model):
 
     def __str__(self):
         return f"{self.product.title} -- {self.product.id}"
+
+
+def slag_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generators(instance)
+
+
+pre_save.connect(slag_pre_save_receiver, sender=Product)

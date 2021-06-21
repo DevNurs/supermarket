@@ -1,7 +1,7 @@
 from apps.products.models import Product, ProductImage
 from apps.products.forms import ProductForm, ProductImageForm
 from django.forms import inlineformset_factory
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -10,6 +10,16 @@ class ProductIndexView(ListView):
     model = Product
     template_name = 'products/index.html'
     context_object_name = 'products'
+
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'products/detail.html'
+
+
+class ProductSlugView(DetailView):
+    model = Product
+    template_name = 'products/detail.html'
 
 
 # def index(request):

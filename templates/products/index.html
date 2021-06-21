@@ -11,7 +11,7 @@
                         <img src="{{ product.product_image.first.image.url }}" class="img-fluid" alt="Image">
                         <div class="mask-icon">
                             <ul>
-                                <li><a href="{% url 'detail' product.id %}" data-toggle="tooltip" data-placement="right" title="View"><i
+                                <li><a href="{% url 'detail' product.slug %}" data-toggle="tooltip" data-placement="right" title="View"><i
                                         class="fas fa-eye"></i></a></li>
                                 <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i
                                         class="fas fa-sync-alt"></i></a></li>
