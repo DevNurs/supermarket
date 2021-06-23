@@ -442,6 +442,7 @@
         <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
         <!-- ALL JS FILES -->
+    {% block js %}
         <script src="{% static 'js/jquery-3.2.1.min.js' %} "></script>
         <script src="{% static 'js/popper.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -457,6 +458,7 @@
         <script src="{% static 'js/form-validator.min.js' %}"></script>
         <script src="{% static 'js/contact-form-script.js' %}"></script>
         <script src="{% static 'js/custom.js' %}"></script>
+    {% endblock js %}
 </body>
 
 </html>

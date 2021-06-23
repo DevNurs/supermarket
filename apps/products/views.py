@@ -2,13 +2,15 @@ from apps.products.models import Product, ProductImage
 from apps.products.forms import ProductForm, ProductImageForm
 from django.forms import inlineformset_factory
 from django.views.generic import ListView, DetailView
+from django.db.models import Q
 
 from django.shortcuts import render, redirect, get_object_or_404
 
 
 class ProductIndexView(ListView):
+    queryset = Product.objects.all()[:8]
     model = Product
-    template_name = 'products/index.html'
+    template_name = 'products/index_cbv.html'
     context_object_name = 'products'
 
 
@@ -22,9 +24,32 @@ class ProductSlugView(DetailView):
     template_name = 'products/detail.html'
 
 
-# def index(request):
-#     product = Product.objects.all()
-#     return render(request, 'products/index.html', {'products': product})
+class ProductGalleryView(ListView):
+    model = Product
+    paginate_by = 4
+    template_name = 'products/index_gallery.html'
+    context_object_name = 'products'
+
+
+class ProductSearchView(ListView):
+    model = Product
+    paginate_by = 4
+    template_name = 'products/index_gallery.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        qury_obj = self.request.GET.get('key')
+        if qury_obj:
+            queryset = Product.objects.filter(
+                Q(title__icontains=qury_obj)
+            )
+        return queryset
+
+
+def index(request):
+    product = Product.objects.all()
+    return render(request, 'products/index.html', {'products': product})
 
 
 def detail(request, id):
