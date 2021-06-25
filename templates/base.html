@@ -105,24 +105,14 @@
 <div class="categories-shop">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="{% static 'images/categories_img_01.jpg' %}" alt=""/>
-                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
+            {% for category_obj in category %}
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="{% static 'images/categories_img_02.jpg' %}" alt=""/>
+                        <a class="btn hvr-hover" href="{% url 'detail_category' category_obj.slug %}">{{ category_obj.title }}</a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="{% static 'images/categories_img_02.jpg' %}" alt=""/>
-                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="{% static 'images/categories_img_03.jpg' %}" alt=""/>
-                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -442,23 +432,23 @@
         <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
         <!-- ALL JS FILES -->
-    {% block js %}
-        <script src="{% static 'js/jquery-3.2.1.min.js' %} "></script>
-        <script src="{% static 'js/popper.min.js' %}"></script>
-        <script src="{% static 'js/bootstrap.min.js' %}"></script>
-        <!-- ALL PLUGINS -->
-        <script src="{% static 'js/jquery.superslides.min.js' %}"></script>
-        <script src="{% static 'js/bootstrap-select.js' %}"></script>
-        <script src="{% static 'js/inewsticker.js' %}"></script>
-        <script src="{% static 'js/bootsnav.js' %}"></script>
-        <script src="{% static 'js/images-loded.min.js' %}"></script>
-        <script src="{% static 'js/isotope.min.js' %}"></script>
-        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-        <script src="{% static 'js/baguetteBox.min.js' %}"></script>
-        <script src="{% static 'js/form-validator.min.js' %}"></script>
-        <script src="{% static 'js/contact-form-script.js' %}"></script>
-        <script src="{% static 'js/custom.js' %}"></script>
-    {% endblock js %}
+        {% block js %}
+            <script src="{% static 'js/jquery-3.2.1.min.js' %} "></script>
+            <script src="{% static 'js/popper.min.js' %}"></script>
+            <script src="{% static 'js/bootstrap.min.js' %}"></script>
+            <!-- ALL PLUGINS -->
+            <script src="{% static 'js/jquery.superslides.min.js' %}"></script>
+            <script src="{% static 'js/bootstrap-select.js' %}"></script>
+            <script src="{% static 'js/inewsticker.js' %}"></script>
+            <script src="{% static 'js/bootsnav.js' %}"></script>
+            <script src="{% static 'js/images-loded.min.js' %}"></script>
+            <script src="{% static 'js/isotope.min.js' %}"></script>
+            <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+            <script src="{% static 'js/baguetteBox.min.js' %}"></script>
+            <script src="{% static 'js/form-validator.min.js' %}"></script>
+            <script src="{% static 'js/contact-form-script.js' %}"></script>
+            <script src="{% static 'js/custom.js' %}"></script>
+        {% endblock js %}
 </body>
 
 </html>

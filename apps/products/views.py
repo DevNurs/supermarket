@@ -1,4 +1,5 @@
 from apps.products.models import Product, ProductImage
+from apps.categories.models import Category
 from apps.products.forms import ProductForm, ProductImageForm
 from django.forms import inlineformset_factory
 from django.views.generic import ListView, DetailView
@@ -12,6 +13,11 @@ class ProductIndexView(ListView):
     model = Product
     template_name = 'products/index_cbv.html'
     context_object_name = 'products'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()[:3]
+        return context
 
 
 class ProductDetailView(DetailView):
