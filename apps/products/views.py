@@ -74,3 +74,17 @@ def create_product(request):
         return redirect('index')
     formset = ProductImageFormset()
     return render(request, 'products/create.html', locals())
+
+
+def update_product(request, id):
+    product = get_object_or_404(Product, id=id)
+    form = ProductForm(request.POST, None, instance=product)
+    ProductImageFormset = inlineformset_factory(Product, ProductImage, form=ProductImageForm, extra=1)
+    if form.is_valid():
+        product = form.save()
+        formset = ProductImageFormset(request.POST, request.FILES, instance=product)
+        if formset.is_valid():
+            formset.save()
+        return redirect('index')
+    formset = ProductImageFormset(instance=product)
+    return render(request, 'products/update.html', locals())

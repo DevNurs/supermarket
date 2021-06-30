@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 <!-- Start Main Top -->
 <div class="main-top">
     <div class="container-fluid">
@@ -24,10 +25,16 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="login-box">
-                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
-                        <option>Register Here</option>
-                        <option>Sign In</option>
-                    </select>
+                    {% if user.is_authenticated %}
+                    <p>Welcome, {{ user.username }} !</p>
+                        <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}"
+                                     alt="" style="width: 40px;border-radius: 100%;">
+                    <div>
+                        <a href="{% url 'logout' %}" class="btn btn-danger">Log out</a>
+                    </div>
+                    {% else %}
+                    <a class="btn btn-success" href="{% provider_login_url 'google' %}">Login with Google</a>
+                    {% endif %}
                 </div>
                 <div class="text-slid-box">
                     <div id="offer-box" class="carouselTicker">
@@ -123,17 +130,20 @@
             <li class="cart-box">
                 <ul class="cart-list">
                     <li>
-                        <a href="#" class="photo"><img src="{% static 'images/img-pro-01.jpg' %}" class="cart-thumb" alt=""/></a>
+                        <a href="#" class="photo"><img src="{% static 'images/img-pro-01.jpg' %}" class="cart-thumb"
+                                                       alt=""/></a>
                         <h6><a href="#">Delica omtantur </a></h6>
                         <p>1x - <span class="price">$80.00</span></p>
                     </li>
                     <li>
-                        <a href="#" class="photo"><img src="{% static 'images/img-pro-02.jpg' %}" class="cart-thumb" alt=""/></a>
+                        <a href="#" class="photo"><img src="{% static 'images/img-pro-02.jpg' %}" class="cart-thumb"
+                                                       alt=""/></a>
                         <h6><a href="#">Omnes ocurreret</a></h6>
                         <p>1x - <span class="price">$60.00</span></p>
                     </li>
                     <li>
-                        <a href="#" class="photo"><img src="{% static 'images/img-pro-03.jpg' %}" class="cart-thumb" alt=""/></a>
+                        <a href="#" class="photo"><img src="{% static 'images/img-pro-03.jpg' %}" class="cart-thumb"
+                                                       alt=""/></a>
                         <h6><a href="#">Agam facilisis</a></h6>
                         <p>1x - <span class="price">$40.00</span></p>
                     </li>
