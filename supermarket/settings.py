@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # apps
     'apps.products',
     'apps.categories',
+    'apps.sms_sender',
 
     # register with google
     'django.contrib.sites',
@@ -154,3 +155,19 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'nursultandev@gmail.com'
+EMAIL_HOST_PASSWORD = 'rplcykcqdkcifhiw'
+
+REDIS_HOST = '0.0.0.0'
+REDIS_PORT = '6379'
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_BROKER_TRANSPORT_OPTION = {'visibility_timeout': 3600}
+CELERY_RESULT_BROKER = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'

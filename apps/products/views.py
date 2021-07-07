@@ -3,6 +3,7 @@ from apps.categories.models import Category
 from apps.products.forms import ProductForm, ProductImageForm
 from django.forms import inlineformset_factory
 from django.views.generic import ListView, DetailView
+from apps.sms_sender.forms import MessageSenderForm
 from django.db.models import Q
 
 from django.shortcuts import render, redirect, get_object_or_404
@@ -16,6 +17,7 @@ class ProductIndexView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['form'] = MessageSenderForm()
         context['category'] = Category.objects.all()[:3]
         return context
 
