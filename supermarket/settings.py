@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'apps.products',
     'apps.categories',
     'apps.sms_sender',
+    'apps.cart',
 
     # register with google
     'django.contrib.sites',
