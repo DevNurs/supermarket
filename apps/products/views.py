@@ -5,6 +5,7 @@ from django.forms import inlineformset_factory
 from django.views.generic import ListView, DetailView
 from apps.sms_sender.forms import MessageSenderForm
 from django.db.models import Q
+from apps.cart.models import Cart
 
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -31,10 +32,17 @@ class ProductSlugView(DetailView):
     model = Product
     template_name = 'products/detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        request = self.request
+        cart_obj, is_new = Cart.objects.get_or_new(request)
+        context['cart_obj'] = cart_obj
+        return context
+
 
 class ProductGalleryView(ListView):
     model = Product
-    paginate_by = 4
+    paginate_by = 1
     template_name = 'products/index_gallery.html'
     context_object_name = 'products'
 
