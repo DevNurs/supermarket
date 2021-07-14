@@ -19,8 +19,13 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth.views import LogoutView
 
+api_urlpatterns = [
+    path('product/', include('apps.products.api.urls')),
+]
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(api_urlpatterns)),
     path('', include('apps.products.urls')),
     path('category/', include('apps.categories.urls')),
     path('send/', include('apps.sms_sender.urls')),

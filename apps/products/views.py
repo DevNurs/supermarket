@@ -42,7 +42,7 @@ class ProductSlugView(DetailView):
 
 class ProductGalleryView(ListView):
     model = Product
-    paginate_by = 1
+    paginate_by = 4
     template_name = 'products/index_gallery.html'
     context_object_name = 'products'
 

@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 
     # apps
     'apps.products',
@@ -79,6 +80,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'supermarket.wsgi.application'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
