@@ -25,6 +25,11 @@ class Product(models.Model):
         null=True, blank=True
     )
 
+    class Meta:
+        verbose_name = 'ПРОДУКТ'
+        verbose_name_plural = 'ПРОДУКТЫ'
+        ordering = ('-id',)
+
     def __str__(self):
         return f"{self.title} -- {self.is_stock}"
 
