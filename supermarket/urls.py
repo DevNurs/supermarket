@@ -24,9 +24,12 @@ api_urlpatterns = [
 ]
 
 urlpatterns = [
+    path('i18n/', include('django.conf.urls.i18n')),
     path('admin/', admin.site.urls),
     path('api/', include(api_urlpatterns)),
     path('', include('apps.products.urls')),
+    path('users/', include('apps.users.urls')),
+    path('users/', include('django.contrib.auth.urls')),
     path('category/', include('apps.categories.urls')),
     path('send/', include('apps.sms_sender.urls')),
     path('cart/', include('apps.cart.urls')),

@@ -1,0 +1,15 @@
+{% extends 'create_base.html' %}
+{% block title %} Sign up Page {% endblock %}
+
+{% block content %}
+
+    <h2>Sing up</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+{% endblock %}
