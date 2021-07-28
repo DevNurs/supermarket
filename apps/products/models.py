@@ -17,7 +17,7 @@ class Product(models.Model):
     slug = models.SlugField(blank=True, unique=True)
     price = models.PositiveIntegerField(verbose_name='Цена:')
     quantity = models.PositiveIntegerField(default=0, verbose_name='Количество:')
-    is_stock = models.BooleanField(default=False, db_index=True)
+    is_stock = models.BooleanField(default=True, db_index=True)
     category = models.ForeignKey(
         Category,
         related_name='product_category',

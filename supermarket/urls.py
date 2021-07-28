@@ -20,7 +20,8 @@ from django.conf import settings
 from django.contrib.auth.views import LogoutView
 
 api_urlpatterns = [
-    path('product/', include('apps.products.api.urls')),
+    path('products/', include('apps.products.api.urls')),
+    path('categries/', include('apps.categories.api.urls')),
 ]
 
 urlpatterns = [
