@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, permissions
 from apps.products.api import serializers
 from apps.products.models import Product, ProductImage
 
@@ -6,6 +6,7 @@ from apps.products.models import Product, ProductImage
 class ProductListAPIView(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = serializers.ProductSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class ProductCreateAPIView(generics.CreateAPIView):
