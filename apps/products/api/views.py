@@ -13,6 +13,9 @@ class ProductCreateAPIView(generics.CreateAPIView):
     queryset = Product.objects.all()
     serializer_class = serializers.ProductSerializer
 
+    def perform_create(self, serializer):
+        return serializer.save(user=self.request.user)
+
 
 class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
