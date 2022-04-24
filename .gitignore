@@ -124,6 +124,7 @@ media/
 # mkdocs documentation
 /site
 .vscode/
+.vscode/
 # mypy
 .mypy_cache/
 .dmypy.json

@@ -8,6 +8,7 @@ class MessageSenderCreateView(CreateView):
     model = MessageSender
     form_class = MessageSenderForm
     success_url = '/'
+    template_name = 'products/create.html'
 
     def form_valid(self, form):
         form.save()

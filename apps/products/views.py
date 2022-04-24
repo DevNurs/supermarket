@@ -18,9 +18,9 @@ class ProductIndexView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['form'] = MessageSenderForm()
+        context['form'] = ()
         context['category'] = Category.objects.all()[:3]
-        return context
+        # return contextMessageSenderForm
 
 
 class ProductDetailView(DetailView):
